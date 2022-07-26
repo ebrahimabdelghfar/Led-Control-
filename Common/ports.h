@@ -67,3 +67,20 @@ enum Timer_A_or_B{
 	Timer_A=0,
 	Timer_B=8
 };
+enum Interupt_Sensitvity{
+	Edge_Sensitve=0,
+	Level_Sensitive
+};
+enum Level_senisitivity{
+	Low_Level=0,
+	High_Level
+};
+enum Edge_senisitivity{
+	Falling_Edge=0,
+	Rising_Edge
+};
+enum Single_Both{
+	Single=0,
+	Both,
+	NONE
+};
