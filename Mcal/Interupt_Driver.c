@@ -1,7 +1,5 @@
 #include "types.h"
 #include "tm4c123gh6pm.h"
-#include <errno.h>
-
 /*
 Description: This fuction is used to initiate interupt and set the priority
 
@@ -25,9 +23,6 @@ void Init_Interupt_NVIC( uint8 Handler_IRQ,uint8 priority ){
 	
 	else if(Handler_IRQ>=96 && Handler_IRQ<=127 ){
 		NVIC_EN3_R |= 1 << (Handler_IRQ-96);
-	}
-	else{
-		 perror("Unvalid IRQ number");
 	}
 	/*End*/
 	
@@ -188,7 +183,7 @@ void Attach_Interupt_For_GPIO(uint8 Port , uint8 Pin , uint8 Level_or_Edge ,uint
 	switch(Port){
 		case 0 :{ //Case PortA
 			GPIO_PORTA_ICR_R = 0xFF ; // clear any from GPIO interupt
-			GPIO_PORTA_IM_R  = 0 ;    // Masked the interupt for configuration
+			GPIO_PORTA_IM_R  |= 0 << Pin ;    // Masked the interupt for configuration
 			GPIO_PORTA_IS_R	 |= Level_or_Edge << Pin ; // Select if the interupt pin triggerd upon Level or edge
 			GPIO_PORTA_IEV_R |= Falling_or_Rising << Pin ;
 			if(Single_Both_edge != 2){
@@ -203,7 +198,7 @@ void Attach_Interupt_For_GPIO(uint8 Port , uint8 Pin , uint8 Level_or_Edge ,uint
 		}
 		case 1 :{ //Case PortB
 			GPIO_PORTB_ICR_R = 0xFF ; // clear any from GPIO interupt
-			GPIO_PORTB_IM_R  = 0 ;    // Masked the interupt for configuration
+			GPIO_PORTB_IM_R  |= 0<<Pin ;    // Masked the interupt for configuration
 			GPIO_PORTB_IS_R	 |= Level_or_Edge << Pin ; // Select if the interupt pin triggerd upon Level or edge
 			GPIO_PORTB_IEV_R |= Falling_or_Rising << Pin ;
 			if(Single_Both_edge != 2){
@@ -218,7 +213,7 @@ void Attach_Interupt_For_GPIO(uint8 Port , uint8 Pin , uint8 Level_or_Edge ,uint
 		}
 		case 2 :{ //Case PortC
 			GPIO_PORTC_ICR_R = 0xFF ; // clear any from GPIO interupt
-			GPIO_PORTC_IM_R  = 0 ;    // Masked the interupt for configuration
+			GPIO_PORTC_IM_R  |= 0<<Pin ;    // Masked the interupt for configuration
 			GPIO_PORTC_IS_R	 |= Level_or_Edge << Pin ; // Select if the interupt pin triggerd upon Level or edge
 			GPIO_PORTC_IEV_R |= Falling_or_Rising << Pin ;
 			if(Single_Both_edge != 2){
@@ -233,7 +228,7 @@ void Attach_Interupt_For_GPIO(uint8 Port , uint8 Pin , uint8 Level_or_Edge ,uint
 		}
 		case 3 :{ //Case PortD
 			GPIO_PORTD_ICR_R = 0xFF ; // clear any from GPIO interupt
-			GPIO_PORTD_IM_R  = 0 ;    // Masked the interupt for configuration
+			GPIO_PORTD_IM_R  |= 0<<Pin ;    // Masked the interupt for configuration
 			GPIO_PORTD_IS_R	 |= Level_or_Edge << Pin ; // Select if the interupt pin triggerd upon Level or edge
 			GPIO_PORTD_IEV_R |= Falling_or_Rising << Pin ;
 			if(Single_Both_edge != 2){
@@ -248,7 +243,7 @@ void Attach_Interupt_For_GPIO(uint8 Port , uint8 Pin , uint8 Level_or_Edge ,uint
 		}
 		case 4 :{ //Case PortE
 			GPIO_PORTE_ICR_R = 0xFF ; // clear any from GPIO interupt
-			GPIO_PORTE_IM_R  = 0 ;    // Masked the interupt for configuration
+			GPIO_PORTE_IM_R  |= 0<<Pin ;    // Masked the interupt for configuration
 			GPIO_PORTE_IS_R	 |= Level_or_Edge << Pin ; // Select if the interupt pin triggerd upon Level or edge
 			GPIO_PORTE_IEV_R |= Falling_or_Rising << Pin ;
 			if(Single_Both_edge != 2){
@@ -263,7 +258,7 @@ void Attach_Interupt_For_GPIO(uint8 Port , uint8 Pin , uint8 Level_or_Edge ,uint
 		}
 		case 5 :{ //Case POrtF
 			GPIO_PORTF_ICR_R = 0xFF ; // clear any from GPIO interupt
-			GPIO_PORTF_IM_R  = 0 ;    // Masked the interupt for configuration
+			GPIO_PORTF_IM_R  |= 0<< Pin ;    // Masked the interupt for configuration
 			GPIO_PORTF_IS_R	 |= Level_or_Edge << Pin ; // Select if the interupt pin triggerd upon Level or edge
 			GPIO_PORTF_IEV_R |= Falling_or_Rising << Pin ;
 			if(Single_Both_edge != 2){
@@ -277,7 +272,6 @@ void Attach_Interupt_For_GPIO(uint8 Port , uint8 Pin , uint8 Level_or_Edge ,uint
 			break;
 		}
 		default:
-			perror("Unvalid PORT");
 			break;
 	}
 }
