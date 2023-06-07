@@ -10,7 +10,7 @@
  - After the the OFF time has just finished the timer interupt will raise the flag to repeat the loop
  - We can change the Led color by using built on switchs on tiva by using interupt 
 # Drivers
-all drivers are exicting in MCAL folder which is used : </br>
+all drivers are existing in MCAL folder which is used : </br>
  - Interupt Driver  ----> Is used to intiate the interupt of every pin of GPIO's Ports.
  - DIO Driver       ----> Is used to configure all the pin as "Digital / Input or Output / Pull Up or Pull Down / Write or Clear"
  - Timer Driver     ----> This driver is used to configure the general purpose timer "GPTM" and contain delay in Micro or Milli and setting dimming light
